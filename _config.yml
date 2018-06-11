@@ -30,6 +30,7 @@ markdown: kramdown
 permalink:  /:year-:month-:day/:title
 paginate:   5
 plugins:
+  - jekyll-assets
   - jekyll-feed
   - jekyll-paginate
   - jekyll-remote-theme
