@@ -86,7 +86,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 3.8.3)
-  jekyll-assets (~> 2.4)
+  jekyll-assets
   jekyll-feed (~> 0.6)
   jekyll-paginate
   jekyll-remote-theme
