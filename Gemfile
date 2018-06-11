@@ -26,7 +26,7 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
 end
 
-gem "jekyll-assets", group: :jekyll_plugins
+gem "jekyll-assets"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
