@@ -9,8 +9,8 @@ permalink: /pick/
   <head>
     <meta charset="utf-8">
     <title>Pick the best</title>
-    <style media="screen">
-      {% asset style.css %}
+    <style>
+      button,ul{padding:0}body{font-family:sans-serif;background-color:#fefefe}.content,.content p{text-align:center}ul{list-style:none}button{color:#fff;width:150px;font-size:10pt;height:40px;border-radius:4px;border:none;margin:10px}#Pick{background:green}#Pass{background:red}#ErrorRate,.red{color:red}#Reset{background:#999}.grey{color:grey}.green{color:green;font-weight:600}
     </style>
   </head>
   <body>
@@ -46,7 +46,7 @@ permalink: /pick/
     </div>
 
     <script type="text/javascript">
-      {% asset script.js %}
+      var list=document.getElementById('List'),numCount=10,punishRate=1.5,numLim,listArr,curIndex,roundMax=5,round,roundScores,errorRateField=document.getElementById('ErrorRate'),roundField=document.getElementById('Round'),picksList=document.getElementById('PicksList'),pickBtn=document.getElementById('Pick'),passBtn=document.getElementById('Pass'),resetBtn=document.getElementById('Reset');round=1,roundScores=[],resetBtn.disabled=!0;function setup(){curIndex=0,listArr=[];for(var b,a=0;a<numCount;a++)b=Math.floor(99*Math.random()+1),listArr.push(Math.floor(Math.random()*b));roundField.innerHTML=round}function reset(){list.innerHTML='',errorRateField.innerHTML='',resetBtn.disabled=!0,roundField.innerHTML=round,setup(),getNext()}function getNext(){var a=document.createElement('li');a.innerHTML=listArr[curIndex]+' ('+(numCount-curIndex-1)+' left.)',list.appendChild(a),curIndex++}function showTheBest(){var a=Math.max(...listArr),b=listArr[curIndex-1],c=Math.floor(100*(Math.abs(a-b)/Math.max(a,b))),d=curIndex*punishRate;roundScores.push(c+d);var e=document.createElement('li');e.innerHTML=b+'/'+a,picksList.appendChild(e)}passBtn.addEventListener('click',function(){curIndex!==numCount&&round<=roundMax&&getNext()}),pickBtn.addEventListener('click',function(){if(round<roundMax)showTheBest(),reset(),round++,roundField.innerHTML=round;else if(round===roundMax){showTheBest(),reset(),roundField.innerHTML='end';var a=0;roundScores.forEach(c=>{a+=c}),a/=roundMax;var b=100-a;errorRateField.innerHTML=Math.floor(b),resetBtn.disabled=!1,round++}}),resetBtn.addEventListener('click',function(){round>=roundMax&&(picksList.innerHTML='',round=1,roundScores=[],reset())}),setup(),getNext();
     </script>
 
   </body>

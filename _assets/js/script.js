@@ -63,14 +63,7 @@ function showTheBest(){
   picksList.appendChild(li);
 
 }
-//This game is made for testing your using your intuitions. There are 20 numbers and also chances.
-//At the beginning of the game, you see a number and 2 chances: Pick or Pass, which means if you
-//choose pass, you will be given another number; or if you pick pass -as it is clear- you will pick
-// the number. The aim is to get closer -as much as you can- to the highest number. Each time you have to
-// decide if this is the highest number or at least the closest one. Yet, there is also a penalty;
-// Whenever you pick another number, your
 
-//
 passBtn.addEventListener("click", function(){
     if ( curIndex !== numCount && round <= roundMax) {
       getNext();
