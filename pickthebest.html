@@ -1,0 +1,53 @@
+---
+layout: post
+title: Pick the best
+permalink: /pick/
+---
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pick the best</title>
+    <style media="screen">
+      {% asset style.css %}
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div id="Info">
+        <p>Each round, you will be given <span class="red">10</span> numbers. You will <span class="green">trust your intuitions</span> and decide if it's the best among others.</p>
+        <p>Each time you <span class="red">pick</span> the number or <span class="red">pass</span> to see next.</p>
+        <p>Error between the best and your pick will be added to your score.</p>
+        <p>Also, pass means time loss: You will lose <span class="red">2.5%</span> for each pass</p>
+      </div>
+      <hr>
+      <h3>Round: <span id="Round"></span></h3>
+      <ul id="List">
+
+      </ul>
+      <hr>
+      <div class="buttons">
+        <button id="Pick" type="button" name="button">Pick</button><button id="Pass" type="button" name="button">Pass</button>
+      </div>
+      <div class="">
+        <h4>Intuition Power <span class="grey">(shows how accurate you are in percentage)</span>: </h4>
+        <h2 id="ErrorRate"></h2>
+      </div>
+      <div class="">
+        <button id="Reset" type="button" name="button">Reset</button>
+      </div>
+
+      <div id="Picks">
+        <ul id="PicksList">
+
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      {% asset script.js %}
+    </script>
+
+  </body>
+</html>

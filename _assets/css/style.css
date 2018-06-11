@@ -1,0 +1,54 @@
+body {
+  font-family: 'sans-serif';
+  background-color: #fefefe;
+}
+.content {
+  text-align: center;
+}
+
+.content p {
+  text-align: center;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+button {
+  color: white;
+  width: 150px;
+  font-size: 10pt;
+  height: 40px;
+  border-radius: 4px;
+  border: none;
+  margin: 10px;
+  padding: 0;
+}
+
+#Pick {
+  background: green;
+}
+
+#Pass {
+  background: red;
+}
+
+#ErrorRate {
+  color: red;
+}
+
+#Reset {
+  background: #999;
+}
+
+.red {
+  color: red;
+}
+
+.grey {
+  color: grey;
+}
+
+.green {
+  color: green;
+  font-weight: 600;
+}
