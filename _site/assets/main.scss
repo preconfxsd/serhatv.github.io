@@ -6,11 +6,11 @@
 
 html,
 body {
-  min-height: calc(100vh - 30px);
-  border: 5px solid #eee;
+  min-height: 100vh;
+  border: 10px solid black;
   color: #555;
   margin: 0;
-  padding: 0;}
+  padding: 0; }
 
 html {
   font-family: "Libre Baskerville", "Times New Roman", Times, serif;
@@ -114,9 +114,7 @@ pre code {
     width: 4rem; }
   .post p {
     margin: 0 0 1rem;
-    text-align: justify;
-    text-indent: 3rem;
-    }
+    text-align: justify; }
   .post a:hover {
     text-decoration: underline; }
   .post img {
@@ -384,16 +382,6 @@ pre code {
   max-width: 800px;
   width: 80%; }
 
-nav {
-  opacity: 0.4;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-nav:hover {
-  opacity: 1;
-}
-
 main,
 footer,
 .nav-container {
@@ -406,33 +394,24 @@ footer,
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
   overflow: auto; }
   .nav-container {
-    margin: 10px auto;
+    margin: 1rem auto;
     position: relative;
     text-align: center; }
   .nav-title {
-    font-family: 'Roboto';
-    font-weight: 400;
-    letter-spacing: 2px;
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     transition: all 0.2s ease-out;
     color: #555;
     display: inline-block;
-    margin: 0; }
+    margin: 0;
+    padding-right: .2rem; }
     .nav-title:hover, .nav-title:focus {
-      opacity: 1;
-      color: orange;
-    }
+      opacity: .6; }
   .nav ul {
     list-style-type: none;
-    text-align: center;
+    margin: 1rem 0 0;
     padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: baseline;
-  }
+    text-align: center; }
   .nav li {
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
@@ -440,18 +419,14 @@ footer,
     color: #555;
     display: inline-block;
     opacity: .6;
-  }
+    padding: 0 2rem 0 0; }
+    .nav li:last-child {
+      padding-right: 0; }
     .nav li:hover, .nav li:focus {
       opacity: 1; }
-      .nav li:first-child {
-        flex-grow: 1;
-        flex-basis: 100%;
-        margin-bottom: 10px;
-      }
   .nav a {
     color: #555;
-    white-space: nowrap;
-  }
+    font-family: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif; }
 
 @media (min-width: 600px) {
   .nav-container {

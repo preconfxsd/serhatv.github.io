@@ -25,13 +25,14 @@
   <body>
     <nav class="nav">
       <div class="nav-container">
-        <a href="/">
-          <h2 class="nav-title">Atralfamadorian</h2>
-        </a>
         <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/pick">Pick the best</a></li>
-          <li><a href="/">Posts</a></li>
+          <li><a href="/"><h2 class="nav-title">Atralfamadorian</h2></a></li>
+          <li><a href="/readfirst">read first.</a></li>
+          <!--<li><a href="/pick">Pick the best</a></li>-->
+          <li><a href="/">thought.</a></li>
+          <li><a href="/">curation.</a></li>
+          <li><a href="/">critic.</a></li>
+          <li><a href="/">.all</a></li>
         </ul>
     </div>
   </nav>
@@ -41,76 +42,21 @@
   
 
   <h1 class="post-title">Pick the best</h1>
-  <div class="post-line"></div>
 
   <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Pick the best</title>
-    <style media="screen">
-      body {
-  font-family: 'sans-serif';
-  background-color: #fefefe;
-}
-.content {
-  text-align: center;
-}
-
-.content p {
-  text-align: center;
-}
-ul {
-  list-style: none;
-  padding: 0;
-}
-button {
-  color: white;
-  width: 150px;
-  font-size: 10pt;
-  height: 40px;
-  border-radius: 4px;
-  border: none;
-  margin: 10px;
-  padding: 0;
-}
-
-#Pick {
-  background: green;
-}
-
-#Pass {
-  background: red;
-}
-
-#ErrorRate {
-  color: red;
-}
-
-#Reset {
-  background: #999;
-}
-
-.red {
-  color: red;
-}
-
-.grey {
-  color: grey;
-}
-
-.green {
-  color: green;
-  font-weight: 600;
-}
-
+    <style>
+      button,ul{padding:0}body{background-color:#fefefe}.content,.content p{text-align:center}ul{list-style:none}button{color:#fff;width:150px;font-size:10pt;height:40px;border-radius:4px;border:none;margin:10px}#Pick{background:green}#Pass{background:red}#ErrorRate,.red{color:red}#Reset{background:#999}.grey{color:grey}.green{color:green;font-weight:600}
     </style>
   </head>
   <body>
     <div class="content">
       <div id="Info">
         <p>Each round, you will be given <span class="red">10</span> numbers. You will <span class="green">trust your intuitions</span> and decide if it's the best among others.</p>
-        <p>Each time you <span class="red">pick</span> the number or <span class="red">pass</span> to see next.</p>
+        <p>Each time you <span class="red">pick</span> the last number or <span class="red">pass</span> to see next.</p>
         <p>Error between the best and your pick will be added to your score.</p>
         <p>Also, pass means time loss: You will lose <span class="red">2.5%</span> for each pass</p>
       </div>
@@ -139,121 +85,7 @@ button {
     </div>
 
     <script type="text/javascript">
-      var list = document.getElementById('List');
-var numCount = 10;
-var punishRate = 1.5;
-var numLim;
-var listArr;
-var curIndex;
-var roundMax = 5;
-var round;
-var roundScores;
-
-var errorRateField = document.getElementById('ErrorRate');
-var roundField = document.getElementById('Round');
-var picksList = document.getElementById('PicksList');
-
-
-var pickBtn = document.getElementById("Pick");
-var passBtn = document.getElementById("Pass");
-var resetBtn = document.getElementById("Reset");
-
-round = 1;
-roundScores = [];
-resetBtn.disabled = true;
-
-function setup() {
-  curIndex = 0;
-  listArr = [];
-
-  for (var i = 0; i < numCount; i++) {
-    var numLimP1 = Math.floor(Math.random()*99 + 1);
-    listArr.push(Math.floor(Math.random()*numLimP1));
-  }
-  roundField.innerHTML = round;
-}
-
-
-function reset() {
-  list.innerHTML = "";
-  errorRateField.innerHTML = "";
-
-  resetBtn.disabled = true;
-  roundField.innerHTML = round;
-  setup();
-  getNext();
-}
-
-function getNext(){
-      var li = document.createElement('li');
-      li.innerHTML = listArr[curIndex] + " (" +(numCount - curIndex - 1) + " left." + ")";
-      list.appendChild(li);
-      curIndex++;
-}
-
-function showTheBest(){
-  var maxInList = Math.max(...listArr);
-  var chosen = listArr[curIndex-1];
-
-  var errorRate = Math.floor(Math.abs(maxInList - chosen) / Math.max(maxInList, chosen)*100);
-  var punish = curIndex * punishRate;
-  roundScores.push(errorRate + punish);
-
-  var li = document.createElement('li');
-  li.innerHTML = chosen + "/" + maxInList;
-  picksList.appendChild(li);
-
-}
-//This game is made for testing your using your intuitions. There are 20 numbers and also chances.
-//At the beginning of the game, you see a number and 2 chances: Pick or Pass, which means if you
-//choose pass, you will be given another number; or if you pick pass -as it is clear- you will pick
-// the number. The aim is to get closer -as much as you can- to the highest number. Each time you have to
-// decide if this is the highest number or at least the closest one. Yet, there is also a penalty;
-// Whenever you pick another number, your
-
-//
-passBtn.addEventListener("click", function(){
-    if ( curIndex !== numCount && round <= roundMax) {
-      getNext();
-    }
-});
-
-pickBtn.addEventListener("click", function () {
-  if (round < roundMax) {
-    showTheBest();
-    reset();
-    round++;
-    roundField.innerHTML = round;
-
-  } else if(round ===roundMax){
-    showTheBest();
-    reset();
-    roundField.innerHTML = "end";
-    var totalScore = 0;
-    roundScores.forEach((score)=>{
-      totalScore += score;
-    });
-    totalScore /= roundMax;
-    var intuitionPower = 100 - totalScore;
-    errorRateField.innerHTML = Math.floor(intuitionPower);
-    resetBtn.disabled = false;
-    round++;
-  }
-})
-
-resetBtn.addEventListener("click", function () {
-  if (round >= roundMax) {
-    picksList.innerHTML = "";
-    round = 1;
-    roundScores = [];
-    reset();
-  }
-})
-
-
-setup();
-getNext();
-
+      var list=document.getElementById('List'),numCount=10,punishRate=1.5,numLim,listArr,curIndex,roundMax=5,round,roundScores,errorRateField=document.getElementById('ErrorRate'),roundField=document.getElementById('Round'),picksList=document.getElementById('PicksList'),pickBtn=document.getElementById('Pick'),passBtn=document.getElementById('Pass'),resetBtn=document.getElementById('Reset');round=1,roundScores=[],resetBtn.disabled=!0;function setup(){curIndex=0,listArr=[];for(var b,a=0;a<numCount;a++)b=Math.floor(99*Math.random()+1),listArr.push(Math.floor(Math.random()*b));roundField.innerHTML=round}function reset(){list.innerHTML='',errorRateField.innerHTML='',resetBtn.disabled=!0,roundField.innerHTML=round,setup(),getNext()}function getNext(){var a=document.createElement('li');a.innerHTML=listArr[curIndex]+' ('+(numCount-curIndex-1)+' left.)',list.appendChild(a),curIndex++}function showTheBest(){var a=Math.max(...listArr),b=listArr[curIndex-1],c=Math.floor(100*(Math.abs(a-b)/Math.max(a,b))),d=curIndex*punishRate;roundScores.push(c+d);var e=document.createElement('li');e.innerHTML=b+'/'+a,picksList.appendChild(e)}passBtn.addEventListener('click',function(){curIndex!==numCount&&round<=roundMax&&getNext()}),pickBtn.addEventListener('click',function(){if(round<roundMax)showTheBest(),reset(),round++,roundField.innerHTML=round;else if(round===roundMax){showTheBest(),reset(),roundField.innerHTML='end';var a=0;roundScores.forEach(c=>{a+=c}),a/=roundMax;var b=100-a;errorRateField.innerHTML=Math.floor(b),resetBtn.disabled=!1,round++}}),resetBtn.addEventListener('click',function(){round>=roundMax&&(picksList.innerHTML='',round=1,roundScores=[],reset())}),setup(),getNext();
     </script>
 
   </body>

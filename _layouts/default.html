@@ -6,13 +6,14 @@
   <body>
     <nav class="nav">
       <div class="nav-container">
-        <a href="{{ site.baseurl }}/">
-          <h2 class="nav-title">{{ site.title }}</h2>
-        </a>
         <ul>
-          <li><a href="{{ '/about' | prepend: site.baseurl }}">About</a></li>
-          <li><a href="{{ '/pick' | prepend: site.baseurl }}">Pick the best</a></li>
-          <li><a href="{{ site.baseurl }}/">Posts</a></li>
+          <li><a href="{{ site.baseurl }}/"><h2 class="nav-title">{{ site.title }}</h2></a></li>
+          <li><a href="{{ '/readfirst' | prepend: site.baseurl }}">read first.</a></li>
+          <!--<li><a href="{{ '/pick' | prepend: site.baseurl }}">Pick the best</a></li>-->
+          <li><a href="{{ site.baseurl }}/">thought.</a></li>
+          <li><a href="{{ site.baseurl }}/">curation.</a></li>
+          <li><a href="{{ site.baseurl }}/">critic.</a></li>
+          <li><a href="{{ site.baseurl }}/">.all</a></li>
         </ul>
     </div>
   </nav>
