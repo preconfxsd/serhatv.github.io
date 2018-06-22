@@ -4,4 +4,4 @@ title: What the fuck is this?
 permalink: /readfirst/
 ---
 
-This is a space only about publication of my digital notes.
+This is public space of my digital notes.
