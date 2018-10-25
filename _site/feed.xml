@@ -1,4 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-06-21T17:59:12+03:00</updated><id>http://localhost:4000/</id><title type="html">Atralfamadorian</title><subtitle>no description, yet.</subtitle><author><name>serhat</name></author><entry><title type="html">Optimal Stopping</title><link href="http://localhost:4000/2018-06-12/optimal-stopping" rel="alternate" type="text/html" title="Optimal Stopping" /><published>2018-06-12T00:00:00+03:00</published><updated>2018-06-12T00:00:00+03:00</updated><id>http://localhost:4000/2018-06-12/optimal-stopping</id><content type="html" xml:base="http://localhost:4000/2018-06-12/optimal-stopping">&lt;h1 id=&quot;where-should-you-stop&quot;&gt;Where Should You Stop?&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-25T22:40:30+03:00</updated><id>http://localhost:4000/</id><title type="html">Atralfamadorian</title><subtitle>no description, yet.</subtitle><author><name>serhat</name></author><entry><title type="html">Processing-I</title><link href="http://localhost:4000/2018-10-25/processing-i" rel="alternate" type="text/html" title="Processing-I" /><published>2018-10-25T00:00:00+03:00</published><updated>2018-10-25T00:00:00+03:00</updated><id>http://localhost:4000/2018-10-25/processing-i</id><content type="html" xml:base="http://localhost:4000/2018-10-25/processing-i">&lt;p&gt;Processing’in indirildiğini varsayarak başlayalım. (&lt;a href=&quot;https://processing.org/&quot;&gt;buradan&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Yeni bir sketch açalım. Bir program oluşturmak için yazmamız gereken temel iki fonskiyon var.&lt;/p&gt;
+
+&lt;p&gt;Onlar şöyle:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setup()&lt;/code&gt; fonksiyonu programın başlamasıyla birlikte yalnızca 1 kez çalışır.
+İlk değer atamaları ya da pencere genişliği gibi değerler burada belirlenir.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;draw()&lt;/code&gt; fonksiyonu ise sürekli çalışarak frame üretir. (saniyede frameRate kadar çalışır.)&lt;/p&gt;
+
+&lt;p&gt; 
+ &lt;/p&gt;
+
+&lt;h1 id=&quot;i̇lk-çıktı&quot;&gt;İlk Çıktı&lt;/h1&gt;
+
+&lt;p&gt;İlk olarak şu kodlarla ilk çıktımızı alalım:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rectMode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CENTER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setup()&lt;/code&gt; içerisinde &lt;code class=&quot;highlighter-rouge&quot;&gt;size()&lt;/code&gt; pencere genişliğini ayarlar, şu durumda width=600, height=600 olarak başladık. background değeriyse 0-255 aralığında bir grayscale değeri.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;draw()&lt;/code&gt; içerisinde bir &lt;code class=&quot;highlighter-rouge&quot;&gt;rect()&lt;/code&gt; ile bir dörtgen çizdirdik. üzerinde yazdığımız &lt;code class=&quot;highlighter-rouge&quot;&gt;rectMode()&lt;/code&gt; ile dörtgeni nasıl çizdireceğimizi belirledik. Köşe yerine merkez koordinatlarını vermek için &lt;code class=&quot;highlighter-rouge&quot;&gt;CENTER&lt;/code&gt; ile çağırdık.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rect(centerX, centerY, width, height)&lt;/code&gt; parametrelerini alıyor, o yüzden merkezde &lt;code class=&quot;highlighter-rouge&quot;&gt;100px x 100px&lt;/code&gt; bir dörtgen bekliyoruz.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/01.png&quot; alt=&quot;simple rectangle&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt; 
+ &lt;/p&gt;
+
+&lt;h1 id=&quot;hareket&quot;&gt;Hareket&lt;/h1&gt;
+
+&lt;p&gt;Peki hareket için neye ihtiyacımız var? Processing her saniye frameRate kadar &lt;code class=&quot;highlighter-rouge&quot;&gt;draw()&lt;/code&gt; fonksiyonunu çağırdığı için dörtgenin pozisyonu her seferinde güncelleyerek yeniden çizdirmeliyiz. Şunu deneyelim:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rectMode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CENTER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;frameCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;rect()&lt;/code&gt; fonksiyonunda &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; parametresine eklediğimiz &lt;code class=&quot;highlighter-rouge&quot;&gt;frameCount&lt;/code&gt; değişkeni programın başından itibaren sayılan frame’leri tutan bir değişken. Böylece her frame değiştiğinde çizilecek dörtgenin pozisyonu güncellenir.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/02.png&quot; alt=&quot;moving rectangle&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Eğer böyle bir görüntü oluştuysa gayet normal, çünkü &lt;code class=&quot;highlighter-rouge&quot;&gt;draw()&lt;/code&gt; her çalıştığında eski dörtgenlerin üstüne çiziyor. Bunu düzeltmek için &lt;code class=&quot;highlighter-rouge&quot;&gt;draw()&lt;/code&gt; fonksiyonun hemen içine ekranı tekrar beyaza boyayıp eski görüntüyü silmek için &lt;code class=&quot;highlighter-rouge&quot;&gt;background()&lt;/code&gt; fonksiyonunu yazalım.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rectMode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CENTER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;frameCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/03.gif&quot; alt=&quot;moving rectange 2&quot; /&gt;&lt;/p&gt;</content><author><name>serhat</name></author><summary type="html">Processing’in indirildiğini varsayarak başlayalım. (buradan)</summary></entry><entry><title type="html">Optimal Stopping</title><link href="http://localhost:4000/2018-06-12/optimal-stopping" rel="alternate" type="text/html" title="Optimal Stopping" /><published>2018-06-12T00:00:00+03:00</published><updated>2018-06-12T00:00:00+03:00</updated><id>http://localhost:4000/2018-06-12/optimal-stopping</id><content type="html" xml:base="http://localhost:4000/2018-06-12/optimal-stopping">&lt;h1 id=&quot;where-should-you-stop&quot;&gt;Where Should You Stop?&lt;/h1&gt;
 
 &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation&lt;/p&gt;
 

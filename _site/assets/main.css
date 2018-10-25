@@ -115,7 +115,7 @@ pre code {
   .post p {
     margin: 0 0 1rem;
     text-align: justify;
-    text-indent: 3rem;
+    text-indent: 0rem;
     }
   .post a:hover {
     text-decoration: underline; }
