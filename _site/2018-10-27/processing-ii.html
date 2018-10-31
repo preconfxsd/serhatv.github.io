@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      Processing  II &middot; Atralfamadorian
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+</head>
+
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <ul>
+          <li><a href="/"><h2 class="nav-title">Atralfamadorian</h2></a></li>
+          <li><a href="/readfirst">read first.</a></li>
+          <!--<li><a href="/pick">Pick the best</a></li>-->
+          <li><a href="/">thought.</a></li>
+          <li><a href="/">curation.</a></li>
+          <li><a href="/">critic.</a></li>
+          <li><a href="/">.all</a></li>
+        </ul>
+    </div>
+  </nav>
+
+    <main>
+      <div class="post">
+  
+
+  <h1 class="post-title">Processing  II</h1>
+
+  <p><em>I’den devam</em></p>
+
+<h1 id="döndürme-ve-hareket-ettirme">Döndürme ve Hareket Ettirme</h1>
+
+<p>Bildiklerimize şekillerin nasıl ve nerede çizileceğini belirten <code class="highlighter-rouge">rotate()</code> ve <code class="highlighter-rouge">translate()</code> fonksiyonlarını ekleyerek devam edelim.</p>
+
+<p><code class="highlighter-rouge">rotate()</code> içerisine bir radian değeri alarak koordinat düzlemini çevirir. <a href="https://processing.org/reference/rotate_.html">(doc)</a></p>
+
+<p><code class="highlighter-rouge">translate()</code> ise koordinat düzleminin merkezini içine aldığı koordinatlara taşır. <a href="https://processing.org/reference/translate_.html">(doc)</a></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* setup() fonksiyonu burada */</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">rectMode</span><span class="o">(</span><span class="n">CENTER</span><span class="o">);</span>
+
+	<span class="n">translate</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
+	<span class="n">rotate</span><span class="o">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mf">180.0</span> <span class="o">*</span> <span class="mi">45</span><span class="o">);</span>
+	<span class="n">rect</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">100</span><span class="o">,</span><span class="mi">100</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/2-01.png" alt="rotated rectangle" /></p>
+
+<p>görüntüsünü aldığımıza göre kodu açıklayalım:</p>
+
+<p><code class="highlighter-rouge">translate()</code> fonksiyonuyla koordinat sisteminin merkezini ekranın ortasına taşıdık. (varsayılan merkez 0,0 - üst sol köşedir).</p>
+
+<p><code class="highlighter-rouge">rotate()</code> ile ise, 45 derece döndürdük. <code class="highlighter-rouge">(PI / 180.0)</code> derece ifade etmek için yazdık.</p>
+
+<p>son olarak <code class="highlighter-rouge">rect()</code> içerisinde dörtgenin <code class="highlighter-rouge">x</code> ve <code class="highlighter-rouge">y</code> koordinatlarını <code class="highlighter-rouge">0</code> olarak geçtik, çünkü artık yeni koordinat merkezimiz <code class="highlighter-rouge">width/2, height/2</code> (ekranın merkezi).</p>
+
+<h1 id="popmatrix-ve-pusmatrix">popMatrix() ve pusMatrix()</h1>
+
+<p><code class="highlighter-rouge">rotate()</code> ve <code class="highlighter-rouge">translate()</code> fonksiyonlarını kullanırken aslında koordinat sistemini döndürdüğümüz ya da hareket ettirdiğimiz için sonraki çizdireceğimiz şekillerin de koordinatlarını yeniden hesaplamak gerekir. Bu karmaşıklığı çözmek için <code class="highlighter-rouge">popMatrix()</code> ve <code class="highlighter-rouge">pushMatrix()</code> kullanırız.</p>
+
+<p>Kısaca şu işi yaparlar: Bu iki fonksiyon arasındaki döndürme ya da hareket ettirme işlemleri yapıldıktan sonra koordinat sistemi eski haline döner.</p>
+
+<p>Şu kodu inceleyelim:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* setup() fonksiyonu burada */</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="o">()</span> <span class="o">{</span>
+	<span class="kt">int</span> <span class="n">rectCount</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
+	<span class="kt">float</span> <span class="n">deg</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mf">180.0</span><span class="o">;</span>
+	<span class="kt">float</span> <span class="n">anglePerRect</span> <span class="o">=</span> <span class="mf">360.0</span><span class="o">/</span><span class="n">rectCount</span><span class="o">;</span>
+
+	<span class="n">pushMatrix</span><span class="o">();</span>
+
+	<span class="n">translate</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
+
+	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rectCount</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+		
+		<span class="n">rotate</span><span class="o">(</span><span class="n">deg</span> <span class="o">*</span> <span class="n">anglePerRect</span> <span class="o">*</span> <span class="n">i</span><span class="o">);</span>
+		<span class="n">rect</span><span class="o">(</span><span class="mi">120</span><span class="o">,</span> <span class="mi">120</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">100</span><span class="o">);</span>    
+	<span class="o">}</span>
+  
+	<span class="n">popMatrix</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Kod 8 tane dörtgen çizer ekrana, herbiri ekran merkezinde 360/8 derece döndürülmüştür.</p>
+
+<p><code class="highlighter-rouge">pushMatrix()</code> ile <code class="highlighter-rouge">popMatrix()</code> arasındaki işlemleri izole ettik. <code class="highlighter-rouge">translate()</code> ile merkezi varsayılan <code class="highlighter-rouge">(0,0)</code>‘dan <code class="highlighter-rouge">(width/2, height/2)</code>‘ye taşıdık.  <code class="highlighter-rouge">deg</code>(derece) ve <code class="highlighter-rouge">anglePerRect</code> (dörtgen başı döndürme) hesapladık.</p>
+
+<p>Sonra <code class="highlighter-rouge">for</code> loop içerisinde döndürme işlemini yapıp dörtgeni çizdirdik.</p>
+
+<p>Şöyle bir görüntü bekliyoruz.</p>
+
+<p><img src="/assets/images/2-02.png" alt="8 rotated rectangle" /></p>
+
+
+
+</div>
+
+<div class="pagination">
+  
+  
+    <a href="/2018-10-25/processing-i" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+  </body>
+</html>
