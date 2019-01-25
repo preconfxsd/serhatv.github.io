@@ -70,9 +70,9 @@
 
 <p><code class="highlighter-rouge">translate()</code> fonksiyonuyla koordinat sisteminin merkezini ekranın ortasına taşıdık. (varsayılan merkez 0,0 - üst sol köşedir).</p>
 
-<p><code class="highlighter-rouge">rotate()</code> ile ise, 45 derece döndürdük. <code class="highlighter-rouge">(PI / 180.0)</code> derece ifade etmek için yazdık.</p>
+<p><code class="highlighter-rouge">rotate()</code> ile ise, 45 derece döndürdük. <code class="highlighter-rouge">(PI / 180.0)</code>i derece ifade etmek için yazdık.</p>
 
-<p>son olarak <code class="highlighter-rouge">rect()</code> içerisinde dörtgenin <code class="highlighter-rouge">x</code> ve <code class="highlighter-rouge">y</code> koordinatlarını <code class="highlighter-rouge">0</code> olarak geçtik, çünkü artık yeni koordinat merkezimiz <code class="highlighter-rouge">width/2, height/2</code> (ekranın merkezi).</p>
+<p>son olarak <code class="highlighter-rouge">rect()</code> içerisinde dörtgenin <code class="highlighter-rouge">x</code> ve <code class="highlighter-rouge">y</code> koordinatlarını <code class="highlighter-rouge">0</code> olarak geçtik, çünkü artık yeni koordinat merkezimiz <code class="highlighter-rouge">(width/2, height/2)</code> (ekranın merkezi).</p>
 
 <h1 id="popmatrix-ve-pusmatrix">popMatrix() ve pusMatrix()</h1>
 
@@ -94,7 +94,6 @@
 	<span class="n">translate</span><span class="o">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
 
 	<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rectCount</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-		
 		<span class="n">rotate</span><span class="o">(</span><span class="n">deg</span> <span class="o">*</span> <span class="n">anglePerRect</span> <span class="o">*</span> <span class="n">i</span><span class="o">);</span>
 		<span class="n">rect</span><span class="o">(</span><span class="mi">120</span><span class="o">,</span> <span class="mi">120</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="mi">100</span><span class="o">);</span>    
 	<span class="o">}</span>
@@ -118,6 +117,8 @@
 </div>
 
 <div class="pagination">
+  
+    <a href="/2019-01-25/encryption-read-and-save-file-client-side-js" class="left arrow">&#8592;</a>
   
   
     <a href="/2018-10-25/processing-i" class="right arrow">&#8594;</a>
