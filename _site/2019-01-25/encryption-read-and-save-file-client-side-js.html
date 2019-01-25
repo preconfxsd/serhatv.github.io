@@ -47,8 +47,6 @@
 
 <p>It was about reading the log files on local disk which encoded in Base64 and encrypted by XOR operations. Then to save the decrypted data.</p>
 
-<p><img src="/assets/images/log-encryption-chart.png" alt="graph" /></p>
-
 <p>As you see in the graph, Log file encoded with Base64 and saved in a log file. Our goal is to read that encrypted log and by using the hash we calculated, extract the original log data.</p>
 
 <h3 id="reversing-the-process-above">Reversing the process above</h3>
@@ -138,29 +136,7 @@
 <p>After that I coded a function to apply the decoding process. The algorithm simply loops through the hashed key and applies XOR operation to the each byte.
 <code class="highlighter-rouge">utils.js</code></p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">decryptStringXOR</span><span class="p">(</span><span class="nx">encodedStr</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">decodedStr</span> <span class="o">=</span> <span class="nx">Base64Decode</span><span class="p">(</span><span class="nx">encodedStr</span><span class="p">);</span> <span class="c1">//assume that str is already encoded</span>
-  <span class="kd">var</span> <span class="nx">strBytes</span> <span class="o">=</span> <span class="nx">stringToUtf8ByteArray</span><span class="p">(</span><span class="nx">decodedStr</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">keyBytes</span> <span class="o">=</span> <span class="nx">stringToUtf8ByteArray</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">outBytes</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">(</span><span class="nx">strBytes</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
-  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">strBytes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">outBytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nx">strBytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">^</span> <span class="nx">keyBytes</span><span class="p">[</span><span class="nx">i</span> <span class="o">%</span> <span class="nx">keyBytes</span><span class="p">.</span><span class="nx">length</span><span class="p">]);</span>
-  <span class="p">}</span>
-  <span class="kd">var</span> <span class="nx">outStr</span> <span class="o">=</span> <span class="nx">utf8ByteArrayToString</span><span class="p">(</span><span class="nx">outBytes</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nx">outStr</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">//To generate str to test</span>
-<span class="kd">function</span> <span class="nx">encryptStringXOR</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">strBytes</span> <span class="o">=</span> <span class="nx">stringToUtf8ByteArray</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">keyBytes</span> <span class="o">=</span> <span class="nx">stringToUtf8ByteArray</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">outBytes</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">(</span><span class="nx">strBytes</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
-  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">strBytes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">outBytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nx">strBytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">^</span> <span class="nx">keyBytes</span><span class="p">[</span><span class="nx">i</span> <span class="o">%</span> <span class="nx">keyBytes</span><span class="p">.</span><span class="nx">length</span><span class="p">]);</span>
-  <span class="p">}</span>
-  <span class="kd">var</span> <span class="nx">outStr</span> <span class="o">=</span> <span class="nx">Base64Encode</span><span class="p">(</span><span class="nx">utf8ByteArrayToString</span><span class="p">(</span><span class="nx">outBytes</span><span class="p">));</span>
-  <span class="k">return</span> <span class="nx">outStr</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">later</span><span class="p">()</span>
 </code></pre></div></div>
 
 <blockquote>

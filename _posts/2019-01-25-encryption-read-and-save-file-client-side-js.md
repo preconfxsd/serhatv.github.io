@@ -7,7 +7,7 @@ title: Encryption and File Reading/Saving with JavaScript
 
 It was about reading the log files on local disk which encoded in Base64 and encrypted by XOR operations. Then to save the decrypted data.
 
-![graph][process_graph]
+
 
 As you see in the graph, Log file encoded with Base64 and saved in a log file. Our goal is to read that encrypted log and by using the hash we calculated, extract the original log data.
 
@@ -100,29 +100,7 @@ After that I coded a function to apply the decoding process. The algorithm simpl
 ``` utils.js ```
 
 ```javascript
-function decryptStringXOR(encodedStr, key) {
-  var decodedStr = Base64Decode(encodedStr); //assume that str is already encoded
-  var strBytes = stringToUtf8ByteArray(decodedStr);
-  var keyBytes = stringToUtf8ByteArray(key);
-  var outBytes = new Uint8Array(strBytes.length);
-  for(var i = 0; i < strBytes.length; i++) {
-    outBytes[i] = (strBytes[i] ^ keyBytes[i % keyBytes.length]);
-  }
-  var outStr = utf8ByteArrayToString(outBytes);
-  return outStr;
-}
-
-//To generate str to test
-function encryptStringXOR(str, key) {
-  var strBytes = stringToUtf8ByteArray(str);
-  var keyBytes = stringToUtf8ByteArray(key);
-  var outBytes = new Uint8Array(strBytes.length);
-  for(var i = 0; i < strBytes.length; i++) {
-    outBytes[i] = (strBytes[i] ^ keyBytes[i % keyBytes.length]);
-  }
-  var outStr = Base64Encode(utf8ByteArrayToString(outBytes));
-  return outStr;
-}
+later()
 ```
 
 
