@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Processing  II
+published: false
 ---
 
 _I'den devam_
@@ -61,7 +62,7 @@ void draw() {
 		rotate(deg * anglePerRect * i);
 		rect(120, 120, 100, 100);    
 	}
-  
+
 	popMatrix();
 }
 ```

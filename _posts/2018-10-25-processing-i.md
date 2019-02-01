@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Processing  I
+published: false
 ---
 
 
@@ -44,7 +45,7 @@ void setup() {
 void draw() {
   rectMode(CENTER);
   rect(width/2, height/2, 100, 100);
-  
+
 }
 
 ```
@@ -75,7 +76,7 @@ void setup() {
 void draw() {
   rectMode(CENTER);
   rect(width/2 + frameCount, height/2, 100, 100);
-  
+
 }
 
 ```
