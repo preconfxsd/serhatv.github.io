@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Processing  I
-published: false
+published: true
 ---
 
 

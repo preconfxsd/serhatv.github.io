@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Processing  II
-published: false
+published: true
 ---
 
 _I'den devam_
