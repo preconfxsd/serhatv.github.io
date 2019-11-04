@@ -1,0 +1,150 @@
+---
+layout: post
+title: Megamenu
+permalink: /megamenu/
+---
+
+<html>
+
+<head>Megamenu Demo</head>
+<style>
+  body {
+  padding: 0;
+  margin: 0;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.megamenu-visible {
+  height: auto;
+  max-height: 600px;
+}
+
+.megamenu-hidden {
+  max-height: 0;
+  overflow: hidden;
+}
+
+nav#NavWithMegaMenu .megamenu-container {
+  max-width: 900px;
+  margin: auto;
+}
+nav#NavWithMegaMenu ul.menu li {
+  display: inline-block;
+}
+nav#NavWithMegaMenu ul.menu li a:hover {
+  color: orange;
+}
+nav#NavWithMegaMenu ul.menu li + li {
+  padding: 36px 0 36px 24px;
+}
+nav#NavWithMegaMenu #Megamenu {
+  background: #efefef;
+}
+nav#NavWithMegaMenu #Megamenu .megamenu-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+nav#NavWithMegaMenu #Megamenu .megamenu-wrapper nav.megamenu-nav,
+nav#NavWithMegaMenu #Megamenu .megamenu-wrapper .megamenu-list {
+  flex: 1;
+}
+nav#NavWithMegaMenu #Megamenu .megamenu-wrapper nav.megamenu-nav ul.megamenu-list {
+  margin-top: 24px;
+}
+nav#NavWithMegaMenu #Megamenu .megamenu-wrapper nav.megamenu-nav ul.megamenu-list li + li {
+  padding-top: 24px;
+}
+
+/*# sourceMappingURL=style.css.map */
+
+</style>
+
+<body>
+	<div>
+		<header>
+			<nav id="NavWithMegaMenu">
+				<ul class="menu megamenu-container">
+					<li class="menu-item"><a href="#">NAV 1</a></li>
+					<li class="menu-item opens-megamenu"><a href="#">NAV 2 (Hover This)</a></li>
+					<li class="menu-item"><a href="#">NAV 3</a></li>
+					<li class="menu-item"><a href="#">NAV 4</a></li>
+				</ul>
+				<div id="Megamenu" class="megamenu megamenu-hidden">
+					<div class="megamenu-wrapper megamenu-container">
+						<nav class="megamenu-nav">
+							<ul class="megamenu-list">
+								<li data-megamenu-image="https://via.placeholder.com/500x350?text=Image 1" class="menu-item megamenu-item"><a href="#">MEGA 1</a></li>
+								<li data-megamenu-image="https://via.placeholder.com/500x350?text=Image 2" class="menu-item megamenu-item"><a href="#">MEGA 2</a></li>
+								<li data-megamenu-image="https://via.placeholder.com/500x350?text=Image 3" class="menu-item megamenu-item"><a href="#">MEGA 3</a></li>
+								<li data-megamenu-image="https://via.placeholder.com/500x350?text=Image 4" class="menu-item megamenu-item"><a href="#">MEGA 4</a></li>
+							</ul>
+						</nav>
+						<div class="megamenu-image">
+							<img src="https://via.placeholder.com/500x350?text=Image 0" alt="">
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+	</div>
+
+
+	<script>
+  function MegaMenu(config) {
+    this.config = config;
+}
+
+MegaMenu.prototype.init = function() {
+    
+    const megamenu = document.getElementById(this.config.megamenuId);
+    const megalinks = document.getElementsByClassName(this.config.megalinkClass);
+    
+    for(let link of megalinks) {
+        link.addEventListener('mouseenter', (e)=> {
+            megamenu.classList.add("megamenu-visible");
+            megamenu.classList.remove("megamenu-hidden");
+            
+        });
+    
+        megamenu.addEventListener("mouseleave", (e)=> {
+            megamenu.classList.remove("megamenu-visible");
+            megamenu.classList.add("megamenu-hidden");
+        });
+    }
+
+    const megamenuItems = megamenu.getElementsByTagName("li");
+    const megamenuImage = megamenu.getElementsByTagName("img")[0];
+
+    for(let item of megamenuItems) {
+        item.addEventListener("mouseenter", (e)=> {
+            const href = e.target.dataset.megamenuImage;
+            console.log(megamenuImage);
+            megamenuImage.src = href;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', (e)=>{
+    const config = {
+        megalinkClass: "opens-megamenu",
+        megamenuId: "Megamenu"
+    };
+
+    const megamenu = new MegaMenu(config);
+    megamenu.init();
+})
+  </script>
+</body>
+
+</html>
